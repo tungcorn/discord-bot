@@ -1,0 +1,29 @@
+{
+  "name": "discord-music-bot",
+  "version": "1.0.0",
+  "description": "🎵 Bot nhạc Discord thông minh, hiện đại - Hỗ trợ YouTube, Spotify",
+  "main": "src/index. js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index. js",
+    "deploy": "node src/deploy-commands.js"
+  },
+  "keywords": ["discord", "music", "bot", "youtube", "spotify"],
+  "author": "TungCorn",
+  "license": "MIT",
+  "dependencies": {
+    "@discordjs/opus": "^0. 9.0",
+    "@discordjs/voice": "^0. 17.0",
+    "discord-player": "^6.7.1",
+    "@discord-player/extractor": "^4.5.1",
+    "discord. js": "^14.16.3",
+    "dotenv": "^16.4.5",
+    "express": "^4. 21.1",
+    "genius-lyrics": "^4.4.7",
+    "mediaplex": "^0. 0.9",
+    "youtube-ext": "^1.1.25"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
