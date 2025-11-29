@@ -3,6 +3,8 @@ node_modules/
 
 # Environment
 .env
+.env.local
+.env.*.local
 
 # Logs
 logs/
@@ -11,7 +13,7 @@ npm-debug.log*
 
 # OS
 .DS_Store
-Thumbs. db
+Thumbs.db
 
 # IDE
 .vscode/
@@ -20,3 +22,6 @@ Thumbs. db
 # Build
 dist/
 build/
+
+# Temporary/Test files
+*-player-script.js
