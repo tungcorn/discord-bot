@@ -1,6 +1,6 @@
 # 🎵 Discord Music Bot
 
-A modern Discord music bot - YouTube, Spotify support (theoretically)!
+A modern Discord music bot with YouTube, Spotify, SoundCloud support (theoretically).
 
 ![Discord.js](https://img.shields.io/badge/Discord.js-v14-blue)
 ![Node.js](https://img.shields.io/badge/Node.js-18+-green)
@@ -10,13 +10,13 @@ A modern Discord music bot - YouTube, Spotify support (theoretically)!
 
 ## ⚠️ PROJECT STATUS: SUSPENDED
 
-### What Works:
+### What Works
 - ✅ Bot comes online on Discord
 - ✅ Responds to `/ping`, `/help` commands
 - ✅ Joins Voice Channel successfully
 - ✅ Adds songs to queue (displays embed)
 
-### What Doesn't Work:
+### What Doesn't Work
 - ❌ **Cannot play audio** - YouTube has blocked most free libraries
 
 ---
@@ -26,13 +26,9 @@ A modern Discord music bot - YouTube, Spotify support (theoretically)!
 | Library | Result |
 |---------|--------|
 | `discord-player` + `@discord-player/extractor` | ❌ ERR_NO_RESULT |
-| `discord-player-youtubei` | ❌ Failed to extract signature decipher |
-| `@distube/ytdl-core@latest` | ❌ Could not parse decipher function |
+| `discord-player-youtubei` | ❌ Parser errors, skips all tracks |
 | `play-dl` | ❌ No results found |
 | `ffmpeg-static` + `@discordjs/opus` | ✅ Installed, but no audio |
-| `opusscript` | ✅ Installed, but no audio |
-| `@snazzah/davey` (DAVE protocol) | ✅ Installed, but YouTube still blocked |
-| Downgrade to `discord-player@6.6.0` | ❌ Still blocked |
 
 **All attempts failed** due to YouTube API changes and blocking of free scraping libraries.
 
@@ -58,7 +54,7 @@ A modern Discord music bot - YouTube, Spotify support (theoretically)!
 - 🚀 Optimized for Railway (Free Hosting)
 - 🔄 Auto-reconnect, Error handling
 
-## 📋 Commands List
+## 📋 Commands
 
 | Command | Description |
 |---------|-------------|
@@ -76,7 +72,7 @@ A modern Discord music bot - YouTube, Spotify support (theoretically)!
 | `/ping` | Check latency |
 | `/help` | View help |
 
-## 🛠️ Installation Guide
+## 🛠️ Installation
 
 ### Step 1: Create Discord Bot
 
@@ -114,14 +110,12 @@ npm run deploy
 npm start
 ```
 
-### Step 3: Deploy to Railway (Free Hosting) - Optional
+### Step 3: Deploy to Railway (Optional)
 
 1. Create account at [Railway](https://railway.app/)
 2. Click **"New Project"** → **"Deploy from GitHub repo"**
 3. Select `discord-bot` repository
-4. Go to **"Variables"** → Add:
-   - `DISCORD_TOKEN` = your bot token
-   - `CLIENT_ID` = your bot client id
+4. Add environment variables: `DISCORD_TOKEN`, `CLIENT_ID`
 5. **Auto deploy!** 🎉
 
 ## 🔐 Environment Variables
@@ -151,21 +145,15 @@ discord-bot/
 └── README.md
 ```
 
-## 📝 Lessons Learned
-
-- **YouTube actively blocks free scraping libraries** - This is an ongoing battle
-- **Lavalink is the most stable solution** - But requires Java and more setup
-- **Music bot development is harder than it looks** - Due to constant API changes
-
 ## ❓ FAQ
 
-**Q: Will this project be updated?**
+**Q: Will this project be updated?**  
 A: Maybe, if free libraries find a workaround for YouTube blocking.
 
-**Q: Should I use this code?**
+**Q: Should I use this code?**  
 A: Only for learning purposes. For production, use Lavalink or existing bots.
 
-**Q: Can I contribute?**
+**Q: Can I contribute?**  
 A: Yes! If you find a working solution, PRs are welcome!
 
 ## 📄 License
@@ -174,4 +162,4 @@ MIT License - Free to use and modify!
 
 ---
 
-**This product is the result of my Discord brainrot** 😔🙇‍♂️
+**Made with ❤️ by TungCorn**

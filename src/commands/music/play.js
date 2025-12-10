@@ -1,11 +1,11 @@
 // 🎵 Lệnh /play - Phát nhạc
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const { useMainPlayer, QueryType } = require('discord-player');
+const { useMainPlayer } = require('discord-player');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        . setName('play')
-        .setDescription('🎵 Phát nhạc từ YouTube')
+        .setName('play')
+        .setDescription('🎵 Phát nhạc từ nhiều nguồn (YouTube, Spotify, SoundCloud,...)')
         .addStringOption(option =>
             option.setName('query')
                 .setDescription('Tên bài hát hoặc URL')
@@ -23,7 +23,7 @@ module.exports = {
             });
         }
 
-        const permissions = voiceChannel. permissionsFor(interaction.client.user);
+        const permissions = voiceChannel.permissionsFor(interaction.client.user);
         if (!permissions.has('Connect') || !permissions.has('Speak')) {
             return interaction.reply({
                 content: '❌ Bot không có quyền vào kênh voice này!',
@@ -31,15 +31,14 @@ module.exports = {
             });
         }
 
-        await interaction. deferReply();
+        await interaction.deferReply();
 
         try {
             const { track } = await player.play(voiceChannel, query, {
-                searchEngine: QueryType.YOUTUBE_SEARCH,
                 nodeOptions: {
                     metadata: {
                         channel: interaction.channel,
-                        requestedBy: interaction. user,
+                        requestedBy: interaction.user,
                     },
                     volume: 50,
                     leaveOnEmpty: true,
@@ -53,7 +52,7 @@ module.exports = {
                 .setColor(0x00ff00)
                 .setTitle('✅ Đã thêm vào hàng đợi')
                 .setDescription(`**[${track.title}](${track.url})**`)
-                . setThumbnail(track.thumbnail)
+                .setThumbnail(track.thumbnail)
                 .addFields(
                     { name: '👤 Ca sĩ', value: track.author || 'Unknown', inline: true },
                     { name: '⏱️ Thời lượng', value: track.duration || 'N/A', inline: true },

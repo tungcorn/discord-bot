@@ -13,8 +13,8 @@ const path = require('path');
 // ========================
 const client = new Client({
     intents: [
-        GatewayIntentBits. Guilds,
-        GatewayIntentBits. GuildVoiceStates,
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildVoiceStates,
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.MessageContent,
     ],
@@ -26,15 +26,20 @@ client.commands = new Collection();
 // ========================
 // 🎵 KHỞI TẠO MUSIC PLAYER
 // ========================
-const player = new Player(client, {
-    ytdlOptions: {
-        quality: 'highestaudio',
-        highWaterMark: 1 << 25,
-    },
-});
+const player = new Player(client);
 
 // Load extractors cho YouTube, Spotify
-player.extractors.loadDefault();
+const { SpotifyExtractor, SoundCloudExtractor, YoutubeExtractor, AppleMusicExtractor } = require('@discord-player/extractor');
+const playdl = require('play-dl');
+
+player.extractors.register(YoutubeExtractor, {});
+player.extractors.register(SpotifyExtractor, {
+    createStream: (q) => playdl.stream(q, {
+        quality: 1
+    })
+});
+player.extractors.register(SoundCloudExtractor, {});
+player.extractors.register(AppleMusicExtractor, {});
 
 // ========================
 // 📁 LOAD COMMANDS
@@ -45,14 +50,14 @@ const commandFolders = fs.readdirSync(commandsPath);
 for (const folder of commandFolders) {
     const folderPath = path.join(commandsPath, folder);
     const commandFiles = fs.readdirSync(folderPath).filter(file => file.endsWith('.js'));
-    
+
     for (const file of commandFiles) {
         const filePath = path.join(folderPath, file);
         const command = require(filePath);
-        
+
         if ('data' in command && 'execute' in command) {
-            client.commands.set(command. data.name, command);
-            console.log(`✅ Loaded command: ${command. data.name}`);
+            client.commands.set(command.data.name, command);
+            console.log(`✅ Loaded command: ${command.data.name}`);
         }
     }
 }
@@ -61,16 +66,16 @@ for (const folder of commandFolders) {
 // 📡 LOAD EVENTS
 // ========================
 const eventsPath = path.join(__dirname, 'events');
-const eventFiles = fs.readdirSync(eventsPath). filter(file => file.endsWith('.js'));
+const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
 
 for (const file of eventFiles) {
     const filePath = path.join(eventsPath, file);
     const event = require(filePath);
-    
+
     if (event.once) {
         client.once(event.name, (...args) => event.execute(...args, player));
     } else {
-        client. on(event.name, (...args) => event.execute(... args, player));
+        client.on(event.name, (...args) => event.execute(...args, player));
     }
 }
 
@@ -89,14 +94,14 @@ player.events.on('playerStart', (queue, track) => {
             { name: '🎧 Yêu cầu bởi', value: `${track.requestedBy}`, inline: true },
         ],
         footer: { text: '🎵 Discord Music Bot' },
-        timestamp: new Date(). toISOString(),
+        timestamp: new Date().toISOString(),
     };
-    
+
     queue.metadata.channel.send({ embeds: [embed] });
 });
 
-player. events.on('audioTrackAdd', (queue, track) => {
-    queue.metadata.channel. send(`✅ Đã thêm **${track.title}** vào hàng đợi! `);
+player.events.on('audioTrackAdd', (queue, track) => {
+    queue.metadata.channel.send(`✅ Đã thêm **${track.title}** vào hàng đợi!`);
 });
 
 player.events.on('emptyQueue', (queue) => {
@@ -109,7 +114,7 @@ player.events.on('emptyChannel', (queue) => {
 
 player.events.on('error', (queue, error) => {
     console.error(`❌ Player Error: ${error.message}`);
-    queue.metadata.channel. send(`❌ Có lỗi xảy ra: ${error.message}`);
+    queue.metadata.channel.send(`❌ Có lỗi xảy ra: ${error.message}`);
 });
 
 // ========================
@@ -118,7 +123,7 @@ player.events.on('error', (queue, error) => {
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app. get('/', (req, res) => {
+app.get('/', (req, res) => {
     res.json({
         status: 'online',
         bot: client.user?.tag || 'Đang khởi động...',
@@ -138,7 +143,7 @@ app.listen(PORT, () => {
 // ========================
 // 🔄 XỬ LÝ LỖI & GRACEFUL SHUTDOWN
 // ========================
-process. on('unhandledRejection', (error) => {
+process.on('unhandledRejection', (error) => {
     console.error('❌ Unhandled Rejection:', error);
 });
 
@@ -162,4 +167,4 @@ process.on('SIGINT', () => {
 // ========================
 // 🚀 ĐĂNG NHẬP BOT
 // ========================
-client.login(process.env. DISCORD_TOKEN);
+client.login(process.env.DISCORD_TOKEN);
