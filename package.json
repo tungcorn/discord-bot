@@ -7,7 +7,7 @@
     "start": "node src/index.js",
     "deploy": "node src/deploy-commands.js"
   },
-  "author": "TungCorn",
+  "author": "tungcorn",
   "license": "MIT",
   "dependencies": {
     "@discord-player/extractor": "^4.4.7",
