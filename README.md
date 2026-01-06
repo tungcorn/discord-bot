@@ -93,7 +93,7 @@ A modern Discord music bot with YouTube, Spotify, SoundCloud support (theoretica
 
 ```bash
 # Clone repository
-git clone https://github.com/TungCorn/discord-bot.git
+git clone https://github.com/tungcorn/discord-bot.git
 cd discord-bot
 
 # Install dependencies
@@ -162,4 +162,4 @@ MIT License - Free to use and modify!
 
 ---
 
-**Made with ❤️ by TungCorn**
+**Made with ❤️ by tungcorn**
