@@ -22,5 +22,11 @@
     "libsodium-wrappers": "^0.7.13",
     "play-dl": "^1.9.7",
     "undici": "^6.23.0"
+  },
+  "overrides": {
+    "undici": "^6.23.0",
+    "tar": "^7.5.6"
   }
 }
+
+
