@@ -28,17 +28,26 @@ client.commands = new Collection();
 // ========================
 const player = new Player(client);
 
-// Load extractors cho YouTube, Spotify
-const { SpotifyExtractor, SoundCloudExtractor, YoutubeExtractor, AppleMusicExtractor } = require('@discord-player/extractor');
+// Load extractors
+const { SpotifyExtractor, AppleMusicExtractor } = require('@discord-player/extractor');
+const { YoutubeiExtractor } = require('discord-player-youtubei');
 const playdl = require('play-dl');
 
-player.extractors.register(YoutubeExtractor, {});
+// Use youtubei extractor with YouTube Music streaming
+// overrideBridgeMode: 'ytmusic' forces YouTube Music which is more stable
+player.extractors.register(YoutubeiExtractor, {
+    priority: 100,
+    overrideBridgeMode: 'ytmusic'  // Use YouTube Music instead of regular YouTube
+});
+
+// Spotify extractor with play-dl for streaming
 player.extractors.register(SpotifyExtractor, {
     createStream: (q) => playdl.stream(q, {
         quality: 1
     })
 });
-player.extractors.register(SoundCloudExtractor, {});
+
+// Apple Music (uses native streaming)
 player.extractors.register(AppleMusicExtractor, {});
 
 // ========================
@@ -115,6 +124,14 @@ player.events.on('emptyChannel', (queue) => {
 player.events.on('error', (queue, error) => {
     console.error(`❌ Player Error: ${error.message}`);
     queue.metadata.channel.send(`❌ Có lỗi xảy ra: ${error.message}`);
+});
+
+// Add playerError event handler (fixes unhandled warning)
+player.events.on('playerError', (queue, error) => {
+    console.error(`❌ Player Stream Error: ${error.message}`);
+    if (queue?.metadata?.channel) {
+        queue.metadata.channel.send(`❌ Lỗi phát nhạc: ${error.message}`);
+    }
 });
 
 // ========================

@@ -9,12 +9,13 @@
   },
   "author": "tungcorn",
   "license": "MIT",
-"dependencies": {
+  "dependencies": {
     "@discord-player/extractor": "^7.1.0",
     "@discordjs/opus": "^0.10.0",
     "@discordjs/voice": "^0.19.0",
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "discord-player": "^7.1.0",
+    "discord-player-youtubei": "^1.5.0",
     "discord.js": "^14.16.3",
     "dotenv": "^16.4.5",
     "express": "^4.22.1",
@@ -30,5 +31,3 @@
     "glob": "^13.0.0"
   }
 }
-
-
