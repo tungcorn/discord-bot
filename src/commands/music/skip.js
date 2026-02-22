@@ -4,7 +4,7 @@ const { useQueue } = require('discord-player');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        . setName('skip')
+        .setName('skip')
         .setDescription('⏭️ Bỏ qua bài hát hiện tại'),
 
     async execute(interaction) {
@@ -17,13 +17,13 @@ module.exports = {
             });
         }
 
-        const currentTrack = queue. currentTrack;
+        const currentTrack = queue.currentTrack;
         queue.node.skip();
 
         const embed = new EmbedBuilder()
-            . setColor(0x00bfff)
+            .setColor(0x00bfff)
             .setDescription(`⏭️ Đã bỏ qua: **${currentTrack.title}**`)
-            .setFooter({ text: `Yêu cầu bởi ${interaction.user. tag}` });
+            .setFooter({ text: `Yêu cầu bởi ${interaction.user.tag}` });
 
         await interaction.reply({ embeds: [embed] });
     },

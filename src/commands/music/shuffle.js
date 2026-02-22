@@ -5,7 +5,7 @@ const { useQueue } = require('discord-player');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('shuffle')
-        . setDescription('🔀 Xáo trộn hàng đợi nhạc'),
+        .setDescription('🔀 Xáo trộn hàng đợi nhạc'),
 
     async execute(interaction) {
         const queue = useQueue(interaction.guild.id);
@@ -20,10 +20,10 @@ module.exports = {
         queue.tracks.shuffle();
 
         const embed = new EmbedBuilder()
-            . setColor(0xe91e63)
+            .setColor(0xe91e63)
             .setDescription(`🔀 Đã xáo trộn **${queue.tracks.size}** bài hát! `)
             .setFooter({ text: `Yêu cầu bởi ${interaction.user.tag}` });
 
-        await interaction. reply({ embeds: [embed] });
+        await interaction.reply({ embeds: [embed] });
     },
 };

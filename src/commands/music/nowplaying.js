@@ -10,7 +10,7 @@ module.exports = {
     async execute(interaction) {
         const queue = useQueue(interaction.guild.id);
 
-        if (! queue || !queue. isPlaying()) {
+        if (!queue || !queue.isPlaying()) {
             return interaction. reply({
                 content: '❌ Không có bài hát nào đang phát!',
                 ephemeral: true,
@@ -18,7 +18,7 @@ module.exports = {
         }
 
         const track = queue.currentTrack;
-        const progress = queue.node. createProgressBar({
+        const progress = queue.node.createProgressBar({
             length: 15,
             timecodes: true,
             indicator: '🔘',
@@ -30,9 +30,9 @@ module.exports = {
             .setColor(0x00ff00)
             .setTitle('🎵 Đang phát')
             .setDescription(`**[${track.title}](${track.url})**`)
-            . setThumbnail(track.thumbnail)
+            .setThumbnail(track.thumbnail)
             .addFields(
-                { name: '👤 Ca sĩ', value: track. author, inline: true },
+                { name: '👤 Ca sĩ', value: track.author, inline: true },
                 { name: '⏱️ Thời lượng', value: track.duration, inline: true },
                 { name: '🔊 Âm lượng', value: `${queue.node.volume}%`, inline: true },
                 { name: '📊 Tiến trình', value: progress || 'N/A' },

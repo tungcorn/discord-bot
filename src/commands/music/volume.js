@@ -2,7 +2,7 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const { useQueue } = require('discord-player');
 
-module. exports = {
+module.exports = {
     data: new SlashCommandBuilder()
         .setName('volume')
         .setDescription('🔊 Điều chỉnh âm lượng')
@@ -17,14 +17,14 @@ module. exports = {
         const queue = useQueue(interaction.guild.id);
         const volume = interaction.options.getInteger('level');
 
-        if (!queue || ! queue.isPlaying()) {
+        if (!queue || !queue.isPlaying()) {
             return interaction.reply({
                 content: '❌ Không có bài hát nào đang phát!',
                 ephemeral: true,
             });
         }
 
-        queue. node.setVolume(volume);
+        queue.node.setVolume(volume);
 
         // Tạo thanh âm lượng visual
         const filled = Math.round(volume / 10);
@@ -34,7 +34,7 @@ module. exports = {
         const embed = new EmbedBuilder()
             .setColor(0x00bfff)
             .setDescription(`${volumeBar}\n\n**Âm lượng:** ${volume}%`)
-            .setFooter({ text: `Yêu cầu bởi ${interaction.user. tag}` });
+            .setFooter({ text: `Yêu cầu bởi ${interaction.user.tag}` });
 
         await interaction.reply({ embeds: [embed] });
     },

@@ -6,7 +6,7 @@ module.exports = {
         if (interaction.isChatInputCommand()) {
             const command = interaction.client.commands.get(interaction.commandName);
 
-            if (! command) {
+            if (!command) {
                 return interaction.reply({
                     content: '❌ Không tìm thấy lệnh này! ',
                     ephemeral: true,
@@ -16,7 +16,7 @@ module.exports = {
             try {
                 await command.execute(interaction, player);
             } catch (error) {
-                console. error(`❌ Lỗi command ${interaction.commandName}:`, error);
+                console.error(`❌ Lỗi command ${interaction.commandName}:`, error);
                 
                 const errorMessage = {
                     content: '❌ Có lỗi xảy ra khi thực hiện lệnh này! ',

@@ -5,12 +5,12 @@ const { useQueue } = require('discord-player');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('pause')
-        . setDescription('⏸️ Tạm dừng bài hát đang phát'),
+        .setDescription('⏸️ Tạm dừng bài hát đang phát'),
 
     async execute(interaction) {
-        const queue = useQueue(interaction.guild. id);
+        const queue = useQueue(interaction.guild.id);
 
-        if (! queue || !queue.isPlaying()) {
+        if (!queue || !queue.isPlaying()) {
             return interaction.reply({
                 content: '❌ Không có bài hát nào đang phát!',
                 ephemeral: true,
@@ -22,7 +22,7 @@ module.exports = {
         const embed = new EmbedBuilder()
             .setColor(0xffff00)
             .setDescription('⏸️ Đã tạm dừng nhạc!  Dùng `/resume` để tiếp tục.')
-            .setFooter({ text: `Yêu cầu bởi ${interaction.user. tag}` });
+            .setFooter({ text: `Yêu cầu bởi ${interaction.user.tag}` });
 
         await interaction.reply({ embeds: [embed] });
     },

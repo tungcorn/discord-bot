@@ -2,7 +2,7 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const { useQueue } = require('discord-player');
 
-module. exports = {
+module.exports = {
     data: new SlashCommandBuilder()
         .setName('resume')
         .setDescription('▶️ Tiếp tục phát nhạc'),
@@ -22,7 +22,7 @@ module. exports = {
         const embed = new EmbedBuilder()
             .setColor(0x00ff00)
             .setDescription('▶️ Đã tiếp tục phát nhạc!')
-            .setFooter({ text: `Yêu cầu bởi ${interaction.user. tag}` });
+            .setFooter({ text: `Yêu cầu bởi ${interaction.user.tag}` });
 
         await interaction.reply({ embeds: [embed] });
     },

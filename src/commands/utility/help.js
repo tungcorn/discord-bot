@@ -3,14 +3,14 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        . setName('help')
+        .setName('help')
         .setDescription('❓ Hiển thị danh sách lệnh và hướng dẫn sử dụng'),
 
     async execute(interaction) {
         const embed = new EmbedBuilder()
             .setColor(0x7289da)
             .setTitle('🎵 Discord Music Bot - Hướng dẫn')
-            . setDescription('Bot nhạc Discord thông minh, hiện đại!')
+            .setDescription('Bot nhạc Discord thông minh, hiện đại!')
             .addFields(
                 {
                     name: '🎶 Phát nhạc',

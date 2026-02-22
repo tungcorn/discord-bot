@@ -4,7 +4,7 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('ping')
-        . setDescription('🏓 Kiểm tra độ trễ của bot'),
+        .setDescription('🏓 Kiểm tra độ trễ của bot'),
 
     async execute(interaction) {
         const sent = await interaction.reply({ 
@@ -17,7 +17,7 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setColor(0x00ff00)
-            . setTitle('🏓 Pong!')
+            .setTitle('🏓 Pong!')
             .addFields(
                 { name: '📡 Bot Latency', value: `${latency}ms`, inline: true },
                 { name: '💓 API Latency', value: `${apiLatency}ms`, inline: true },

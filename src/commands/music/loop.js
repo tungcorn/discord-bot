@@ -31,7 +31,7 @@ module.exports = {
         const modes = {
             'off': QueueRepeatMode.OFF,
             'track': QueueRepeatMode.TRACK,
-            'queue': QueueRepeatMode. QUEUE,
+            'queue': QueueRepeatMode.QUEUE,
             'autoplay': QueueRepeatMode. AUTOPLAY,
         };
 
@@ -47,7 +47,7 @@ module.exports = {
         const embed = new EmbedBuilder()
             .setColor(0x9b59b6)
             .setDescription(modeNames[mode])
-            .setFooter({ text: `Yêu cầu bởi ${interaction.user. tag}` });
+            .setFooter({ text: `Yêu cầu bởi ${interaction.user.tag}` });
 
         await interaction.reply({ embeds: [embed] });
     },
